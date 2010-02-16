@@ -1,0 +1,8 @@
+Revision history for Lingua-TreeTagger-Installer
+
+0.01    Fri Feb 12 14:06:15 WET 2010
+        First version, released on an unsuspecting world, including:
+        - basic builder script to download treetagger and language parameters
+        - basic configuration mechanism to support more architectures and languages
+          (macosx-intel and linux only in this release)
+
