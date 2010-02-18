@@ -1,5 +1,5 @@
-package Lingua::TreeTagger:Installer;
-our $VERSION = '0.11';
+package Lingua::TreeTagger::Installer;
+our $VERSION = '0.12';
 1;
 
 =head1 NAME

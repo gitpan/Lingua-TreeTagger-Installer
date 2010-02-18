@@ -13,9 +13,9 @@ meta-spec:
   version: 1.4
 name: Lingua-TreeTagger-Installer
 provides:
-  Lingua::TreeTagger:Installer:
+  Lingua::TreeTagger::Installer:
     file: lib/Lingua/TreeTagger/Installer.pm
-    version: 0.11
+    version: 0.12
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.11
+version: 0.12
