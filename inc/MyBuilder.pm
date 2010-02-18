@@ -12,22 +12,35 @@ sub process_treelib_files {
     }
 }
 
-sub  process_treebin_files {
-    my  $builder = shift;
+
+
+sub process_sitebin_files {
+    my $builder = shift;
 
     if ($builder->notes('platform') eq "macosx-intel") {
         my $files = $builder->rscan_dir("extrafiles", qr/\.mac$/);
         for my $file (@$files) {
             my $target = $file;
-            $target =~ s!extrafiles!blib/script!;
+            $target =~ s!extrafiles!treetagger/bin!;
             $target =~ s!\.mac$!!;
             copy $file, $target;
-            chmod 755, $target;
+            chmod 0755, $target;
         }
     }
 
+    my @files = grep { -f $_ } @{$builder->rscan_dir("treetagger/bin")};
+    for my $file (@files) {
+        chmod 0755, $file;
+        $builder->copy_if_modified(from=>$file, to_dir=>"blib/sitebin", flatten => 1 );
+    }
+}
+
+sub process_treebin_files {
+    my  $builder = shift;
+
     my @files = grep { -f $_ }  @{$builder->rscan_dir("treetagger/cmd")};
     for my $file (@files) {
+        chmod 0755, $file;
         $builder->copy_if_modified(from=>$file, to_dir=>"blib/treebin", flatten => 1 );
     }
 }

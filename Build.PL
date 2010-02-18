@@ -9,6 +9,9 @@ use YAML::Any qw/LoadFile/;
 use Data::Dumper;
 use LWP::Simple;
 use File::Copy;
+use File::Path qw.remove_tree.;
+
+remove_tree('treetagger');
 
 my $builder = MyBuilder->new(
                              module_name    => 'Lingua::TreeTagger::Installer',
@@ -39,11 +42,10 @@ process_files($builder,
               cmd => $treebindir,
               lib => $treelibdir);
 
-$builder->script_files( [grep { -f $_ } @{$builder->rscan_dir("treetagger/bin")}] );
-
 add_custom_installs($builder,
-                    libdir => $treelibdir,
-                    bindir => $treebindir);
+                    sitebin => $installbindir,
+                    libdir  => $treelibdir,
+                    bindir  => $treebindir);
 
 $builder->create_build_script;
 
@@ -58,7 +60,10 @@ sub install_parameter {
         $tgz->extract("treetagger");
         unlink "PT-GZ.tar.gz";
         for my $f (glob("treetagger/bin/*.perl")) {
-            move $f, "treetagger/cmd";
+            my $t = $f;
+            $t =~ s!treetagger/bin!treetagger/cmd!;
+            move $f, $t;
+            chmod 0755, $t;
         }
     } else {
         my $filename = $url;
@@ -86,8 +91,9 @@ sub install_parameters {
         for my $opt (keys %{$languages->{$lang}}) {
             $quick_access->{"$i.$j"} = [$languages->{$lang}{$opt}, 
                                         sprintf("%20s (%s)", $lang, $opt)];
-            ++$i; ++$j;
+            ++$j;
         }
+        ++$i;
     }
 
     do {
@@ -132,6 +138,7 @@ sub install_binary {
 
     print "\nFetching Tree-Tagger binary\n($url)\n";
     getstore($url, "treetagger.tar.gz");
+    die "Could not download $url!\n" unless -f "treetagger.tar.gz";
 
     print "Unwrapping tarball\n";
     my $tgz = Archive::Any->new("treetagger.tar.gz");
@@ -186,9 +193,11 @@ sub add_custom_installs {
     # Tell Module::Build there's two new types of installs.
     $builder->add_build_element('treelib');
     $builder->add_build_element('treebin');
+    $builder->add_build_element('sitebin');
 
     # And where to install them.
     $builder->install_path( treebin => $paths{bindir} );
     $builder->install_path( treelib => $paths{libdir} );
+    $builder->install_path( sitebin => $paths{sitebin});
 }
 
