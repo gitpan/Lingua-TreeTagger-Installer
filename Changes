@@ -1,7 +1,11 @@
 Revision history for Lingua-TreeTagger-Installer
 
+0.13    Tue Jul 31 16:22:48 WEST 2012
+        - Added german utf8 parameters file.
+        - Module needs drastic rewrite, sometime in the future.
+
 0.12	Thu Feb 18 12:02:58 WET 2010
-		- fixed module name (shame)
+        - fixed module name (shame)
 
 0.11    Thu Feb 18 11:53:31 WET 2010
         - fixed binaries installation to correct place
