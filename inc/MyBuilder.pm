@@ -3,6 +3,12 @@ package MyBuilder;
 use base 'Module::Build';
 use File::Copy;
 
+sub ACTION_install {
+    $_[0]->SUPER::ACTION_install;
+    warn "TreeTagger binaries should be installed.\n";
+    warn "Use tree-tagger-install-lang to install parameter files.\n";
+}
+
 sub process_treelib_files {
     my $builder = shift;
 
@@ -11,8 +17,6 @@ sub process_treelib_files {
         $builder->copy_if_modified( from => $file, to_dir =>  "blib/treelib", flatten => 1 );
     }
 }
-
-
 
 sub process_sitebin_files {
     my $builder = shift;

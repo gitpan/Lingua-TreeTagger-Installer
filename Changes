@@ -1,5 +1,12 @@
 Revision history for Lingua-TreeTagger-Installer
 
+0.50_1  Sun Aug 26 21:48:58 WEST 2012
+        Complete rewrite of the module:
+        - Building the module will only install the tree-tagger main files
+        - it will also install a tree-tagger-install-lang command line tool
+          that can be used to install and query about installed parameter
+          files.
+
 0.13    Tue Jul 31 16:22:48 WEST 2012
         - Added german utf8 parameters file.
         - Module needs drastic rewrite, sometime in the future.

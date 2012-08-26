@@ -3,11 +3,20 @@ abstract: 'Automates TreeTagger installation'
 author:
   - 'Alberto SimÃµes <ambs@cpan.org>'
 build_requires:
+  Archive::Any: 0
+  Clone: 0
+  File::Basename: 0
+  File::Copy: 0
+  File::Temp: 0
+  Getopt::Std: 0
+  IO::Uncompress::Gunzip: 0
+  LWP::Simple: 0
   Test::More: 0.40
+  YAML: 0
 configure_requires:
   Module::Build: 0.40
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4002, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,7 +25,7 @@ name: Lingua-TreeTagger-Installer
 provides:
   Lingua::TreeTagger::Installer:
     file: lib/Lingua/TreeTagger/Installer.pm
-    version: 0.13
+    version: 0.50_1
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.13
+version: 0.50_1
