@@ -32,12 +32,26 @@
          "requires" : {
             "Module::Build" : "0.40"
          }
+      },
+      "runtime" : {
+         "requires" : {
+            "Archive::Any" : "0",
+            "Clone" : "0",
+            "File::Basename" : "0",
+            "File::Copy" : "0",
+            "File::Temp" : "0",
+            "Getopt::Std" : "0",
+            "IO::Uncompress::Gunzip" : "0",
+            "LWP::Simple" : "0",
+            "Test::More" : "0.40",
+            "YAML" : "0"
+         }
       }
    },
    "provides" : {
       "Lingua::TreeTagger::Installer" : {
          "file" : "lib/Lingua/TreeTagger/Installer.pm",
-         "version" : "0.50_1"
+         "version" : "0.50_2"
       }
    },
    "release_status" : "testing",
@@ -46,5 +60,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.50_1"
+   "version" : "0.50_2"
 }

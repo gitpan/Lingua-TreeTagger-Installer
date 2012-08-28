@@ -13,24 +13,27 @@ use File::Copy qw'move';
 
 remove_tree 'treetagger';
 
+my %common_requirements = (
+                           'File::Copy' => 0,
+                           'Test::More' => '0.40',
+                           'Archive::Any' => 0,
+                           'Getopt::Std' => 0,
+                           'File::Basename' => 0,
+                           'LWP::Simple' => 0,
+                           'IO::Uncompress::Gunzip' => 0,
+                           'File::Temp' => 0,
+                           'Clone' => 0,
+                           'YAML' => 0,
+                          );
+
 my $builder = MyBuilder->new
   (
    module_name    => 'Lingua::TreeTagger::Installer',
    dist_abstract  => "Automates TreeTagger installation",
    dist_author    => q{Alberto Simões <ambs@cpan.org>},
    license        => 'perl',
-   build_requires => {
-                      'File::Copy' => 0,
-                      'Test::More' => '0.40',
-                      'Archive::Any' => 0,
-                      'Getopt::Std' => 0,
-                      'File::Basename' => 0,
-                      'LWP::Simple' => 0,
-                      'IO::Uncompress::Gunzip' => 0,
-                      'File::Temp' => 0,
-                      'Clone' => 0,
-                      'YAML' => 0,
-                     },
+   requires       => \%common_requirements,
+   build_requires => \%common_requirements,
    add_to_cleanup => ['Lingua-TreeTagger-Installer-*', 'treetagger'],
   );
 

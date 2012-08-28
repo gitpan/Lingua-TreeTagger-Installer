@@ -3,7 +3,7 @@ package Lingua::TreeTagger::Installer;
 use warnings;
 use strict;
 
-our $VERSION = '0.50_1';
+our $VERSION = '0.50_2';
 
 use Clone 'clone';
 use YAML;
